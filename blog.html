@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog do ADS</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div id="conteiner">
+        <header>
+            <h1 id="titulo-principal">blog do ads &#128526</h1>
+            <span id="inicio-pagina"></span>
+        </header>
+       
+        <div id="leiaute-flex">
+            <nav id="sidebar">
+                <h3>Seções</h3>
+                <ul>
+                    <li><a href="#box-model">Box Model</a></li>
+                    <li><a href="#campos-modernos">Campos Modernos</a></li>
+                    <li><a href="#buscas">Formulários de Busca</a></li>
+                    <li><a href="#tabelas">Tabelas</a></li>
+                    <li><a href="#listas">Listas</a></li>
+                    <li><a href="#espacamentos">Espaçamentos</a></li>
+                    <li><a href="#fontes">Fontes</a></li>
+                    <li><a href="#cores">Cores</a></li>
+                    <li><a href="#simbolos">Símbolos</a></li>
+                    <li><a href="#ifpi">Sobre o IFPI</a></li>
+                    <li><a href="#formatacao">Formatação de Textos</a></li>
+                    <li><a href="#postagens">Postagens</a></li>
+                    <li><a href="#videos">Vídeos Recomendados</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                </ul>
+            </nav>
+            <main>
+                <article id="box-model">
+                    <h2>Box model</h2>
+                    <p>O box model define uma série de formatações que vão desde:</p>
+                    <ul>
+                        <li class="bordas">Bordas</li>
+                        <li class="margens">Margens internas e externas</li>
+                        <li class="comprimento">Comprimento dos componentes</li>
+                    </ul>
+
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="campos-modernos">
+                    <h2>Campos mais modernos</h2>
+                    <form action="">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required class="input">
+                        <br>
+                        <label for="cor">Cor</label>
+                        <input type="color" id="cor" name="cor" value="#ff0000" class="input">
+                        <br>
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data" value="" required class="input">
+                        <br>
+                        <label for="hora">Hora</label>
+                        <input type="time" id="hora" name="hora" value="" required class="input">
+                        <br>
+                        <label for="nota">Nota</label>
+                        <input type="range" id="nota" name="hora" min="0" max="10" value="5" required>
+                        <div id="nota-atual"></div>
+                        <br>
+                        <label for="idade">Idade</label>
+                        <input type="number" id="idade" name="idade" min="0" max="120" value="18" required class="input">
+                        <div id="nota-atual"></div>
+                        <br>
+                        <input type="submit" value="Validar" class="input">
+
+                    </form>
+                    <script>
+                        function mudaNota() {
+                            let nota = document.getElementById('nota').value;
+                            document.getElementById('nota-atual').innerText = nota;
+                        }
+
+                        document.getElementById('nota').addEventListener('change', mudaNota);
+                        mudaNota();
+                    </script>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="buscas">
+                    <h2>Formulário clássicos de busca</h2>
+                    <p>Busca no google</p>
+                    <form action="http://www.google.com/search" method="get">
+                        <input type="text" name="q" placeholder="Digite sua pesquisa" class="input">
+                        <br>
+                        <input type="radio" name="lr" value="lang_pt">Português
+                        <input type="radio" name="lr" value="lang_en">Inglês
+                        <input type="radio" name="lr" value="lang_fr">Francês
+                        <input type="radio" name="lr" value="lang_es">Espanhol
+                        <br>
+                        <input type="submit" value="Pesquisar" class="input">
+                    </form>
+
+                    <p>Busca no Mercado Livre</p>
+                    <form action="https://www.mercadolivre.com.br/jm/search" method="get">
+                        <input type="text" name="as_word" placeholder="Digite sua pesquisa" class="input">
+                        <input type="submit" value="Pesquisar" class="input">
+                    </form>
+                    <p>Busca na Amazon</p>
+                    <form action="https://www.amazon.com.br/s" method="get">
+                        <input type="text" name="field-keywords" placeholder="Digite sua pesquisa" class="input">
+                        <br>
+                        <select name="url" id="">
+                            <option value="search-alias=toys" selected>Brinquedos</option>
+                            <option value="search-alias=baby">Bebês</option>
+                            <option value="search-alias=stripbooks">Livros</option>
+                            
+                        </select>
+                        <input type="submit" value="Pesquisar" class="input">
+                    </form>
+
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="tabelas">
+                    <h2>Tabelas</h2>
+                    <p>Uma tabela é uma coleção de dados organizados em linhas e colunas.</p>
+                    <p>Uma tabela pode ter um cabeçalho, um corpo e um rodapé.</p>
+                    <p>Uma tabela pode ter bordas, espaçamento e preenchimento.</p>
+                    <p>Uma tabela pode ter células mescladas.</p>
+
+                    <p>Uma tabela simples com apenas cabeçalho, linhas e colunas</p>
+                    <table class="tabela-1">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Cidade</th>
+                        </tr>
+                        <tr>
+                            <td>João</td>
+                            <td>25</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr>
+                            <td>Maria</td>
+                            <td>30</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr>
+                            <td>José</td>
+                            <td>35</td>
+                            <td>Teresina</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Uma tabela simples como a anterior, porém com mais dados e linhas zebradas</p>
+                    <table class="tabela-2">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Cidade</th>
+                        </tr>
+                        <tr class="linha-branca">
+                            <td>João</td>
+                            <td>25</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-cinza">
+                            <td>Maria</td>
+                            <td>30</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-branca">
+                            <td>José</td>
+                            <td>35</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-cinza">
+                            <td>José</td>
+                            <td>35</td>
+                            <td>Teresina</td>
+                        </tr>
+                    </table>
+
+                    <p>Tabela zebrada, com cabeçalho e colunas e linhas expandidas</p>
+                    <table class="tabela-3">
+
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Cidade</th>
+                        </tr>
+                        <tr class="linha-branca">
+                            <td>João</td>
+                            <td>25</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-cinza">
+                            <td>Maria</td>
+                            <td>30</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-branca">
+                            <td>José</td>
+                            <td>35</td>
+                            <td>Teresina</td>
+                        </tr>
+                        <tr class="linha-cinza">
+                            <td colspan="3">Total de pessoas: 3</td>
+                        </tr>
+
+                    </table>
+                    <!--
+            <table class="tabela-1">
+                <caption>Tabela de exemplo</caption>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Cidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>João</td>
+                        <td>25</td>
+                        <td>Teresina</td>
+                    </tr>
+                    <tr>
+                        <td>Maria</td>
+                        <td>30</td>
+                        <td>Teresina</td>
+                    </tr>
+                    <tr>
+                        <td>José</td>
+                        <td>35</td>
+                        <td>Teresina</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total de pessoas: 3</td>
+                    </tr>
+            </tfoot>
+            </table>
+            -->
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="listas">
+                    <h2>Lista de Links</h2>
+
+                    <ul class="lista-de-links">
+                        <li><a href="https://www.google.com.br">Google</a></li>
+                        <li><a href="https://www.ifpi.edu.br" target="_blank">IFPI - abrir em outra aba</a></li>
+                        <li><a href="#fim-da-pagina">Fim da página</a></li>
+                        <li>
+                            <a href="imagens/perfil.jpg" target="_blank">
+                                <img src="imagens/perfil_thumb.png" alt="Imagem de perfil" class="imagem-perfil">
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+
+
+                    <h2>Listas</h2>
+                    <p>Listas não ordenadas</p>
+                    <ul class="lista-nao-ordenada">
+                        <li>Maçã
+                        <li>Laranja
+                        <li>Banana
+                    </ul>
+
+                    <p>Listas ordenadas</p>
+                    <ol class="lista-ordenada">
+                        <li>Organizar tasks
+                        <li>Passar no supercado
+                        <li>Vir ao IFPI
+                    </ol>
+                    <p>Listas com imagens</p>
+                    <ul class="lista-com-imagens">
+                        <li>Maçã
+                        <li>Laranja
+                        <li>Banana
+                    </ul>
+                    <dl>
+                        <dt>Definição de lista</dt>
+                        <dd>Uma lista é uma coleção de itens.</dd>
+                        <dt>Definição de lista não ordenada</dt>
+                        <dd>Uma lista não ordenada é uma coleção de itens sem ordem específica.</dd>
+                        <dt>Definição de lista ordenada</dt>
+                        <dd>Uma lista ordenada é uma coleção de itens com ordem específica.</dd>
+                    </dl>
+                    <p>Listas aninhadas</p>
+                    <ul>
+                        <li>Maçã
+                            <ul>
+                                <li>Verde</li>
+                                <li>Vermelha</li>
+                            </ul>
+                        </li>
+                        <li>Laranja
+                            <ul>
+                                <li>Bahia</li>
+                                <li>Serra</li>
+                            </ul>
+                        </li>
+                        <li>Banana
+                            <ul>
+                                <li>Prata</li>
+                                <li>Nanica</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="espacamentos">
+                    <h2>Alinhamentos</h2>
+                    <p class="justificado">Justificado - Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Delectus
+                        amet
+                        accusamus placeat perspiciatis, id libero doloremque quos dolor aliquam adipisci consequatur,
+                        quasi
+                        quae
+                        quam quas non minima. Atque, cupiditate sit? Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Repellat perferendis odio inventore cupiditate tempore placeat porro esse iste consequatur,
+                        quibusdam
+                        accusantium hic, architecto et debitis reiciendis non adipisci. Quo, sed! Lorem, ipsum dolor sit
+                        amet
+                        consectetur adipisicing elit. Perspiciatis, quam? Commodi illo ea laudantium asperiores,
+                        expedita
+                        explicabo
+                        vel officia incidunt maxime nam, fuga similique! Inventore sunt doloribus reprehenderit iusto
+                        quos.
+                    </p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - à direita</p>
+
+                    <h2>Espaçamentos</h2>
+                    <p class="entre-linhas">Espaçamento entre linhas de 2.0: Lorem ipsum dolor sit amet consectetur,
+                        adipisicing
+                        elit. Delectus amet accusamus placeat perspiciatis, id libero doloremque quos dolor aliquam
+                        adipisci
+                        consequatur, quasi quae quam quas non minima. Atque, cupiditate sit? Lorem ipsum dolor sit amet
+                        consectetur
+                        adipisicing elit. Repellat perferendis odio inventore cupiditate tempore placeat porro esse iste
+                        consequatur, quibusdam accusantium hic, architecto et debitis reiciendis non adipisci. Quo, sed!
+                        Lorem,
+                        ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quam? Commodi illo ea
+                        laudantium
+                        asperiores, expedita explicabo vel officia incidunt maxime nam, fuga similique! Inventore sunt
+                        doloribus
+                        reprehenderit iusto quos.</p>
+                    <p class="entre-letras">Espaçamento entre letras de 2.0: adipisci consequatur, quasi quae quam quas
+                        non
+                        minima.
+                        Atque, cupiditate sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+                        perferendis
+                        odio
+                        inventore cupiditate tempore placeat porro esse iste consequatur, quibusdam accusantium hic,
+                        architecto
+                        et
+                        debitis reiciendis non adipisci. Quo, sed! Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Perspiciatis, quam? Commodi illo ea laudantium asperiores, expedita explicabo vel officia
+                        incidunt
+                        maxime
+                        nam, fuga similique! Inventore sunt doloribus reprehenderit iusto quos.</p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="fontes">
+
+                    <h2>Fontes</h2>
+                    <p>Algumas fontes:</p>
+                    <p class="times">times - Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor debitis,
+                        veritatis
+                        ex
+                        facere dolorem vitae id magni mollitia dolores, doloribus eligendi nobis reiciendis unde alias
+                        voluptas
+                        consequuntur consequatur, quo provident!</p>
+                    <p>arial (configurada na definição body no CSS) - Lorem, ipsum dolor sit amet consectetur
+                        adipisicing
+                        elit.
+                        Consectetur praesentium doloribus architecto aperiam harum? Optio iste laudantium tenetur,
+                        consectetur
+                        blanditiis soluta quia qui mollitia nisi saepe unde iusto numquam consequuntur.</p>
+                    <p class="verdana">verdana - Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                        possimus
+                        aspernatur quaerat dignissimos eos debitis sit vitae, exercitationem earum quod et consequuntur
+                        nihil
+                        quasi
+                        molestias perspiciatis fuga. Atque, mollitia placeat!</p>
+                    <p class="playwrite">playwrite - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+                        officiis
+                        quibusdam delectus maxime, sint consectetur soluta possimus porro incidunt necessitatibus, in
+                        recusandae
+                        sunt quisquam dignissimos consequatur. Sit mollitia animi enim.</p>
+                    <p class="monospace">Monoespaçadas - asdfghjklç</p>
+                    <p class="monospace">Monoespaçadas - ~i909099OO</p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="cores">
+                    <h2>Cores</h2>
+                    <p class="vermelho">Texto vermelho</p>
+                    <p class="verde">Texto verde</p>
+                    <p class="azul">Texto azul</p>
+                    <p class="cinza-claro">Texto cinza claro</p>
+                    <p class="cinza-escuro">Texto cinzaescuro</p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article>
+
+                    <h2>Formatação de textos em CSS</h2>
+                    <p class="negrito">Um exemplo de texto em negrito</p>
+                    <p class="italico">Um exemplo de texto em itálico</p>
+                    <p class="sublinhado">Um exemplo de texto em >sublinhado</p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="simbolos">
+                    <h2>Símbolos</h2>
+                    <p>A tag &lt; html &gt; diz que o documento é HTML</p>
+                    <p>Símbolo do Euro: &euro;</p>
+                    <p>Símbolo do Iene: &yen;</p>
+                    <p>Copyright: &copy;</p>
+                    <p>Trade mark: &trade;</p>
+                    <p>Omega: &omega;</p>
+                    <p>Emojis: &#128578; </p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="ifpi">
+                    <h2>Sobre o IFPI</h2>
+                    <p>Esta é a logomarca do IFPI</p>
+                    <img src="https://www.ifpi.edu.br/topo_ifpi.png" alt="Logomarca do IFPI">
+                    <p><a href="http://www.ifpi.edu.br" target="_blank">Site do IFPI</a></p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                <article id="formatacao">
+                    <h2>Formatação de textos</h2>
+
+                    <p>Um exemplo de texto em <strong>negrito</strong></p>
+                    <p>Um exemplo de texto em <em>itálico</em></p>
+                    <p>Um exemplo de texto em <u>sublinhado</u></p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+
+                <article id="postagens">
+                    <h2>Minha primeira postagem</h2>
+
+                    <p>Hello Wold! Esta é minha primeira postagem</p>
+                    <p class="autor-data">07/04/2025 - por Ely Miranda - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+
+                <article id="videos">
+                    <h2>Vídeos Recomendados</h2>
+                    <p class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/YNqrNqpq6-E?si=R5yheWO8PW-0BlNu" title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </p>
+                    <p class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/3v2RUozpDVw?si=p55ghVYlrVDBeDe9" title="YouTube video player"
+                         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </p>
+                    <p class="autor-data">16/04/2025 - por Ana Cláudia - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+
+                <article id="portfolio">
+                    <h2>Portfólio</h2>
+                    <div class="imagens-portfolio">
+                        <div class="perfil">
+                            <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+                            <p class="nome">Ana Cláudia</p>
+                            <a href="imagens/Ana.avif" target="_blank">
+                                <img src="imagens/Ana.avif" alt="Imagem Portfolio" class="imagem-portfolio">
+                            </a>
+                            <p class="curriculo">
+                                &#127891; <strong>Formação Acadêmica</strong><br>
+                                &#128218; Bacharelado em Fisioterapia – UNINOVAFAPI (2019)<br>
+                                &#128300; Especialização em Ergonomia – UFPI (2020)<br>
+                                &#128640; Tecnólogo em Análise e Desenvolvimento de Sistemas – IFPI (Em andamento)<br><br>
+
+                                &#127918;&#127952; <strong>Hobbies & Paixões</strong><br>
+                                &#127952; Amo jogar tênis de mesa e ler livros<br>
+                                &#127918; Jogos de videogame<br>
+                                &#9992;&#65039; Amo viajar<br><br>
+
+                                &#128187;&#128161; <strong>Habilidades & Experiências</strong><br>
+                                &#128241; Desenvolvo apps com Flutter<br>
+                                &#128187; Conhecimento em Python, JavaScript, C, Node.js e HTML<br>
+                                &#127908; Participação em eventos<br><br>
+
+                                &#129300; <strong>Curiosidades Sobre Mim</strong><br>
+                                &#127859; Adoro fazer sobremesas<br>
+                                &#129335;&#127996;&#9792;&#65039; Sempre sou quieta e na minha, as pessoas acham que me acho ou sou zangada por isso<br>
+                                &#127955; Já viajei para competições em tênis de mesa, já fiz judô<br>
+                                &#127891; Realizo palestras nas empresas sobre ergonomia<br>
+                                &#9877;&#65039; Em 2019, sofri um acidente de carro que me deixou tetraplégica. Desde então, precisei ressignificar minha vida, explorando novos caminhos profissionais e me adaptando às minhas limitações com resiliência e determinação.<br><br>
+
+                                &#128640; Sempre estou tentando obter evoluções para ter uma maior independência.
+
+                            </p>
+                        </div>
+                        <div class="perfil">
+                            <p class="nome">Sâmia Braga</p>
+                            <a href="imagens/samia.avif" target="_blank">
+                                <img src="imagens/samia.avif" alt="Imagem Portfolio" class="imagem-portfolio">
+                            </a>
+                            <p class="curriculo">
+                                &#127891; <strong>Formação Acadêmica</strong><br>
+                                &#128218; Licenciatura Plena em Química – UESPI (2015)<br>
+                                &#128300; Mestrado em Química – UFPI (2018)<br>
+                                &#128187; Técnico em Análise e Desenvolvimento de Sistemas – IFPI (2022)<br>
+                                &#128640; Tecnólogo em Análise e Desenvolvimento de Sistemas – IFPI (Em andamento)<br><br>
+
+                                &#127918;&#127952; <strong>Hobbies & Paixões</strong><br>
+                                &#127952; Amo jogar vôlei e puxar ferro na musculação<br>
+                                &#127918; Passo um tempinho no videogame<br>
+                                &#128131; Nada como um bom forrozinho pra animar o dia!<br><br>
+
+                                &#128187;&#128161; <strong>Habilidades & Experiências</strong><br>
+                                &#128241; Desenvolvo apps com Flutter e crio protótipos no Figma<br>
+                                &#128187; Conhecimento em Python, JavaScript, C e Dart<br>
+                                &#127908; Coordeno e executo eventos com organização &#127942;<br><br>
+
+                                &#129300; <strong>Curiosidades Sobre Mim</strong><br>
+                                &#127859; Adoro cozinhar e já fui empreendedora na base do "faça você mesmo"!<br>
+                                &#128133; Eu mesma cuido das minhas unhas e sobrancelhas<br>
+                                &#127874; Já vendi bolos no pote na faculdade, sanduíches na escola e até t-shirts pra ajudar nas contas<br>
+                                &#127891; Sempre bolsista nos projetos acadêmicos – a vida de pesquisa sempre me acompanhou!<br>
+                                &#9877;&#65039; Em 2018, fui diagnosticada com doença celíaca, tireoidite de Hashimoto e endometriose. Desde então, minha vida mudou completamente! Isso me levou a adotar hábitos mais saudáveis e foi um dos grandes motivos para minha mudança de área profissional.<br><br>
+
+                                &#128640; Sempre explorando novas oportunidades e desafios! &#128161;&#128515;
+
+                            </p>
+                        </div>
+                    </div>
+                    <p class="autor-data">23/04/2025 - por Sâmia Braga - <a href="#inicio-pagina">&uarr;</a></p>
+                </article>
+                  
+            </main>
+            <aside>
+                <ul>
+                    <h3>Links úteis</h3>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">HTML no MDN</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">CSS no MDN</a></li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">Tutorial HTML - W3Schools</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank">Tutorial CSS - W3Schools</a></li>
+                    <li><a href="https://web.dev/" target="_blank">Boas práticas Web.dev</a></li>
+                    <li><a href="https://css-tricks.com/snippets/css/" target="_blank">CSS Tricks (snippets)</a></li>
+                    <li><a href="https://caniuse.com/" target="_blank">Can I use?</a></li>
+                </ul>
+            </aside>
+        </div>
+        <footer>
+            <p>Blog do ADS</p>
+            <p class="blogs">😃 Discentes: Ana Cláudia e Sâmia Dantas</p>
+            <p>📧 Contato: <a href="mailto:ads@gmail.com">ads@gmail.com</a></p>
+            <p>Todos os direitos reservados &copy;</p>
+            <span id="fim-da-pagina"></span>
+        </footer>
+    </div>
+</body>
+
+</html>
