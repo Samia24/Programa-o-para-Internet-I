@@ -60,7 +60,22 @@ async function crawlPagina(url) {
  * Salva os dados das páginas em um arquivo JSON
  */
 function salvarEmArquivoJSON() {
-    fs.writeFileSync('paginas.json', JSON.stringify(paginasArmazenadas, null, 2), 'utf-8');
+     // Cria um novo objeto para armazenar os dados de forma organizada
+    const estruturaFormatada = {
+        // Esse array vai conter um objeto para cada página visitada
+        paginas: []
+    };
+    // Percorre todas as páginas armazenadas no crawler
+    for (const [url, { html, links }] of Object.entries(paginasArmazenadas)) {
+        // Para cada URL, cria um objeto
+        estruturaFormatada.paginas.push({
+            Página: url,
+            Conteúdo: html, // O HTML bruto será armazenado como "Conteúdo"
+            Links: links
+        });
+    }
+    // Converte o objeto JavaScript para uma string JSON formatada
+    fs.writeFileSync('paginas.json', JSON.stringify(estruturaFormatada, null, 2), 'utf-8');
     console.log('\u2705 Dados salvos no arquivo paginas.json');
 }
 
