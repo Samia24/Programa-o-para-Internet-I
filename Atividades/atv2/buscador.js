@@ -1,10 +1,9 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import * as fs from 'fs';
-import * as path from 'path';
 
-const pastaHtml = path.resolve('paginas');
-const arquivoSalvo = path.resolve(pastaHtml, 'salvo.txt');
+// Aqui será armazenado tudo (em memória e depois no arquivo JSON)
+const paginasArmazenadas = {};
 
 // Set para guardar links já visitados, ele evita visitar a mesma página mais de 1x.
 const paginasVisitadas = new Set();
@@ -14,8 +13,6 @@ async function crawlPagina(url) {
     if (paginasVisitadas.has(url)) {
         return; // Já visitou, então não precisa visitar de novo.
     }
-    // Mostra a url que está visitando no momento.
-    console.log(`Visitando: ${url}`);
     // Se ainda não foi visitada, ele adiciona a URL no Set.
     paginasVisitadas.add(url);
       
@@ -24,18 +21,7 @@ async function crawlPagina(url) {
         // Faz uma requisição http solicitando o conteúdo da página e devolve um html a ser interpretado pelo cheerios.
         const resposta = await axios.get(url);
 
-        // Verifica se o arquivo existe, se não existir, cria
-        if (!fs.existsSync(arquivoSalvo)) {
-            fs.writeFileSync(arquivoSalvo, '');
-        }
-
-        const conteudoAtual = fs.readFileSync(arquivoSalvo, 'utf-8');
-        
-        // Verifica se a URL já foi visitada
-        if (!conteudoAtual.includes(`=== Página: ${url} ===`)) {
-            fs.appendFileSync(arquivoSalvo, `\n\n=== Página: ${url} ===\n`);
-            fs.appendFileSync(arquivoSalvo, resposta.data);
-        }
+        const html = resposta.data;
 
         // Carrega o arquivo html (o conteúdo da página)
         const $ = cheerio.load(resposta.data);
@@ -45,30 +31,105 @@ async function crawlPagina(url) {
            Depois faz um loop para cada <a> encontrado, passando o índice e o objeto que representa o <a> atual.
         */
         $('a').each((i, elemento) => {
-            const texto = $(elemento).text();
             const href = $(elemento).attr('href');
             if (href) {
                 // Ele pega o href ex: matrix.html e troca com o final da url http://..../blade_runner.html e fica http://..../matrix.html.
                 const urlAbsoluta = new URL(href, url).href;
                 // Armazena o texto que vem entre as tags <a>Texto</a> e a urlAbsoluta da página acessada, no vetor links.
-                links.push({ texto, href: urlAbsoluta });
+                links.push(urlAbsoluta);
             }
         });
+
+        // Armazena a página atual
+        paginasArmazenadas[url] = { html, links };
+
+
         // Chama recursivamente para cada link encontrado e armazenado no vetor.
         for (const link of links) {
             // O await faz com que o código espere terminar de processar a próxima página antes de ir para o próximo link.
-            await crawlPagina(link.href);
+            await crawlPagina(link);
         }
-        // Mostra os objetos adicionados no vetor link.
-        console.log("Links encontrados:", links);
 
     } catch (erro) {
         // Emite um erro caso não consiga acessar o link.
-        console.error("Erro ao acessar a página:", erro.message);
+        console.error(`Erro ao acessar a página ${url}: ${erro.message}`);
     }
 }
 
+/**
+ * Salva os dados das páginas em um arquivo JSON
+ */
+function salvarEmArquivoJSON() {
+    fs.writeFileSync('paginas.json', JSON.stringify(paginasArmazenadas, null, 2), 'utf-8');
+    console.log('\u2705 Dados salvos no arquivo paginas.json');
+}
+
+// Função que busca um termo em todas as páginas armazenadas e ranqueia os resultados
+function buscarTermo(termo) {
+    // Vetor para armazenar os resultados com pontuação de cada página
+    const resultados = [];
+
+    // Percorre todas as entradas do objeto paginasArmazenadas
+    for (const [url, { html, links }] of Object.entries(paginasArmazenadas)) {
+        // Carrega o conteúdo HTML da página usando cheerio
+        const $ = cheerio.load(html);
+        // Extrai o texto visível do <body> da página
+        const texto = $('body').text();
+        // Conta quantas vezes o termo aparece no texto (ignorando maiúsculas/minúsculas).
+        const ocorrencias = (texto.match(new RegExp(termo, 'gi')) || []).length;
+        // Se não encontrar nada, retorna um array vazio e o length será 0.
+
+        // Conta quantas outras páginas possuem link para esta página atual
+        const linksRecebidos = Object.values(paginasArmazenadas).filter(p => p.links.includes(url)).length;
+
+        // Verifica se a própria página contém um link para si mesma
+        const possuiAutoreferencia = links.includes(url);
+        
+        // Calcula a pontuação com base nas regras definidas:
+        // +10 por cada link recebido, +10 por ocorrência do termo, -15 se tiver autoreferência
+        let pontuacao = 0;
+        pontuacao += linksRecebidos * 10;
+        pontuacao += ocorrencias * 10;
+        if (possuiAutoreferencia) pontuacao -= 15;
+        // Adiciona os dados dessa página no vetor de resultados
+        resultados.push({
+        url,
+        pontuacao,
+        linksRecebidos,
+        ocorrencias,
+        possuiAutoreferencia
+        });
+    }
+
+    // Ordena os resultados com os critérios de desempate:
+    // 1. Maior pontuação
+    // 2. Mais links recebidos
+    // 3. Mais ocorrências do termo
+    // 4. Se ainda empatar, páginas sem autoreferência vêm primeiro
+    resultados.sort((a, b) => {
+        if (b.pontuacao !== a.pontuacao) return b.pontuacao - a.pontuacao;
+        if (b.linksRecebidos !== a.linksRecebidos) return b.linksRecebidos - a.linksRecebidos;
+        if (b.ocorrencias !== a.ocorrencias) return b.ocorrencias - a.ocorrencias;
+        return a.possuiAutoreferencia - b.possuiAutoreferencia;
+    });
+
+    // Exibe os resultados da busca no terminal como tabela
+    console.log(`\nResultado para: "${termo}"`);
+    console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia']);
+}
+  
+
 
 // Exemplo de uso:
-crawlPagina('https://anacadad.github.io/Atv2_PI/blade_runner.html');
-
+const urlInicial = 'https://anacadad.github.io/Atv2_PI/blade_runner.html';
+async function iniciar() {
+    await crawlPagina(urlInicial); // espera todo o rastreamento
+    console.log('\nTotal de páginas salvas:', Object.keys(paginasArmazenadas).length);
+    salvarEmArquivoJSON();         // salva com conteúdo completo
+  
+    buscarTermo('Matrix');
+    buscarTermo('Ficção Científica');
+    buscarTermo('Realidade');
+}
+  
+iniciar(); 
