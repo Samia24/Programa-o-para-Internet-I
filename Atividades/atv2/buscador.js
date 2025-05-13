@@ -8,6 +8,7 @@ const paginasArmazenadas = {};
 // Set para guardar links já visitados, ele evita visitar a mesma página mais de 1x.
 const paginasVisitadas = new Set();
 
+
 async function crawlPagina(url) {
     // A função has(valor) do Set serve para verificar se o valor já está dentro dele.
     if (paginasVisitadas.has(url)) {
@@ -24,7 +25,7 @@ async function crawlPagina(url) {
         const html = resposta.data;
 
         // Carrega o arquivo html (o conteúdo da página)
-        const $ = cheerio.load(resposta.data);
+        const $ = cheerio.load(html);
         const links = [];
 
         /* Seleciona todos os links da página HTML;
@@ -88,14 +89,19 @@ function buscarTermo(termo) {
     for (const [url, { html, links }] of Object.entries(paginasArmazenadas)) {
         // Carrega o conteúdo HTML da página usando cheerio
         const $ = cheerio.load(html);
-        // Extrai o texto visível do <body> da página
-        const texto = $('body').text();
+        // Converte todo texto do html pra minúsculo
+        const texto = html.toLowerCase();
+        const termoLower = termo.toLowerCase();
         // Conta quantas vezes o termo aparece no texto (ignorando maiúsculas/minúsculas).
-        const ocorrencias = (texto.match(new RegExp(termo, 'gi')) || []).length;
+        const ocorrencias = (texto.match(new RegExp(termoLower, 'g')) || []).length; 
+        /* RegExp -> cria uma nova expressão regular baseada no termo
+        g -> significa global, ou seja, vai procurar todas as ocorrências e não parar na primeira encontrada
+        */
         // Se não encontrar nada, retorna um array vazio e o length será 0.
 
         // Conta quantas outras páginas possuem link para esta página atual
-        const linksRecebidos = Object.values(paginasArmazenadas).filter(p => p.links.includes(url)).length;
+        const linksRecebidos = Object.entries(paginasArmazenadas).filter(([paginaUrl, pagina]) => 
+            pagina.links.includes(url) && paginaUrl !== url).length;
 
         // Verifica se a própria página contém um link para si mesma
         const possuiAutoreferencia = links.includes(url);
@@ -104,7 +110,7 @@ function buscarTermo(termo) {
         // +10 por cada link recebido, +10 por ocorrência do termo, -15 se tiver autoreferência
         let pontuacao = 0;
         pontuacao += linksRecebidos * 10;
-        pontuacao += ocorrencias * 10;
+        pontuacao += ocorrencias * 5;
         if (possuiAutoreferencia) pontuacao -= 15;
         // Adiciona os dados dessa página no vetor de resultados
         resultados.push({
@@ -132,8 +138,6 @@ function buscarTermo(termo) {
     console.log(`\nResultado para: "${termo}"`);
     console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia']);
 }
-  
-
 
 // Exemplo de uso:
 const urlInicial = 'https://anacadad.github.io/Atv2_PI/blade_runner.html';
@@ -145,6 +149,8 @@ async function iniciar() {
     buscarTermo('Matrix');
     buscarTermo('Ficção Científica');
     buscarTermo('Realidade');
+    buscarTermo('Universo');
+    buscarTermo('Viagem');
 }
   
 iniciar(); 
