@@ -44,7 +44,6 @@ async function crawlPagina(url) {
         // Armazena a página atual
         paginasArmazenadas[url] = { html, links };
 
-
         // Chama recursivamente para cada link encontrado e armazenado no vetor.
         for (const link of links) {
             // O await faz com que o código espere terminar de processar a próxima página antes de ir para o próximo link.
@@ -147,6 +146,8 @@ async function iniciar() {
     salvarEmArquivoJSON();         // salva com conteúdo completo
   
     buscarTermo('Rock');
+    buscarTermo('Cultura');
+    buscarTermo('Solo');
     
 }
   
