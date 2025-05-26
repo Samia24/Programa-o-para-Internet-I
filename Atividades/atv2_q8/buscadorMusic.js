@@ -104,6 +104,9 @@ function buscarTermo(termo) {
 
         // Verifica se a própria página contém um link para si mesma
         const possuiAutoreferencia = links.includes(url);
+
+         // Pega o tamanho do texto de cada url verificada
+        const tamanho = html.length;
         
         // Calcula a pontuação com base nas regras definidas:
         // +10 por cada link recebido, +10 por ocorrência do termo, -15 se tiver autoreferência
@@ -112,13 +115,16 @@ function buscarTermo(termo) {
         pontuacao += ocorrencias * 5;
         if (possuiAutoreferencia) pontuacao -= 15;
         // Adiciona os dados dessa página no vetor de resultados
-        resultados.push({
-        url,
-        pontuacao,
-        linksRecebidos,
-        ocorrencias,
-        possuiAutoreferencia
-        });
+        if (ocorrencias > 0){
+            resultados.push({
+            url,
+            pontuacao,
+            linksRecebidos,
+            ocorrencias,
+            possuiAutoreferencia,
+            tamanho
+            });
+        }
     }
 
     // Ordena os resultados com os critérios de desempate:
@@ -130,12 +136,13 @@ function buscarTermo(termo) {
         if (b.pontuacao !== a.pontuacao) return b.pontuacao - a.pontuacao;
         if (b.linksRecebidos !== a.linksRecebidos) return b.linksRecebidos - a.linksRecebidos;
         if (b.ocorrencias !== a.ocorrencias) return b.ocorrencias - a.ocorrencias;
-        return a.possuiAutoreferencia - b.possuiAutoreferencia;
+        if (a.possuiAutoreferencia !== b.possuiAutoreferencia) return a.possuiAutoreferencia - b.possuiAutoreferencia;
+        return b.tamanho - a.tamanho; // maior conteúdo vence
     });
 
     // Exibe os resultados da busca no terminal como tabela
     console.log(`\nResultado para: "${termo}"`);
-    console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia']);
+    console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia', 'tamanho']);
 }
 
 // Exemplo de uso:
@@ -148,6 +155,7 @@ async function iniciar() {
     buscarTermo('Rock');
     buscarTermo('Cultura');
     buscarTermo('Solo');
+    buscarTermo('Música');
     
 }
   
