@@ -8,6 +8,7 @@ const paginasArmazenadas = {};
 // Set para guardar links já visitados, ele evita visitar a mesma página mais de 1x.
 const paginasVisitadas = new Set();
 
+//Set - guarda URLs únicas
 
 async function crawlPagina(url) {
     // A função has(valor) do Set serve para verificar se o valor já está dentro dele.
@@ -29,7 +30,7 @@ async function crawlPagina(url) {
         const links = [];
 
         /* Seleciona todos os links da página HTML;
-           Depois faz um loop para cada <a> encontrado, passando o índice e o objeto que representa o <a> atual.
+           Depois faz um loop para cada <a> encontrada, passando o índice e o objeto que representa a tag <a> atual.
         */
         $('a').each((i, elemento) => {
             const href = $(elemento).attr('href');
@@ -92,9 +93,11 @@ function buscarTermo(termo) {
         // Converte todo texto do html pra minúsculo
         const texto = html.toLowerCase();
         const termoLower = termo.toLowerCase();
-        // Conta quantas vezes o termo aparece no texto (ignorando maiúsculas/minúsculas).
+        // Conta quantas vezes o termo aparece no texto 
         const ocorrencias = (texto.match(new RegExp(termoLower, 'g')) || []).length; 
-        /* RegExp -> cria uma nova expressão regular baseada no termo
+        /* A função .match() busca todos os trechos que batem com o padrão passado. Se encontrar, retorna um
+        array com todos os resultados.
+        RegExp -> cria uma nova expressão regular baseada no termo
         g -> significa global, ou seja, vai procurar todas as ocorrências e não parar na primeira encontrada
         */
         // Se não encontrar nada, retorna um array vazio e o length será 0.
@@ -106,6 +109,9 @@ function buscarTermo(termo) {
         // Verifica se a própria página contém um link para si mesma
         const possuiAutoreferencia = links.includes(url);
         
+        // Pega o tamanho do texto de cada url verificada
+        const tamanho = html.length;
+        
         // Calcula a pontuação com base nas regras definidas:
         // +10 por cada link recebido, +10 por ocorrência do termo, -15 se tiver autoreferência
         let pontuacao = 0;
@@ -113,13 +119,16 @@ function buscarTermo(termo) {
         pontuacao += ocorrencias * 5;
         if (possuiAutoreferencia) pontuacao -= 15;
         // Adiciona os dados dessa página no vetor de resultados
-        resultados.push({
-        url,
-        pontuacao,
-        linksRecebidos,
-        ocorrencias,
-        possuiAutoreferencia
-        });
+        if(ocorrencias > 0){
+            resultados.push({
+            url,
+            pontuacao,
+            linksRecebidos,
+            ocorrencias,
+            possuiAutoreferencia,
+            tamanho
+            });
+        }
     }
 
     // Ordena os resultados com os critérios de desempate:
@@ -131,12 +140,13 @@ function buscarTermo(termo) {
         if (b.pontuacao !== a.pontuacao) return b.pontuacao - a.pontuacao;
         if (b.linksRecebidos !== a.linksRecebidos) return b.linksRecebidos - a.linksRecebidos;
         if (b.ocorrencias !== a.ocorrencias) return b.ocorrencias - a.ocorrencias;
-        return a.possuiAutoreferencia - b.possuiAutoreferencia;
+        if (a.possuiAutoreferencia !== b.possuiAutoreferencia) return a.possuiAutoreferencia - b.possuiAutoreferencia;
+        return b.tamanho - a.tamanho; // maior conteúdo vence
     });
 
     // Exibe os resultados da busca no terminal como tabela
     console.log(`\nResultado para: "${termo}"`);
-    console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia']);
+    console.table(resultados, ['url', 'pontuacao', 'linksRecebidos', 'ocorrencias', 'possuiAutoreferencia', 'tamanho']);
 }
 
 // Exemplo de uso:
@@ -151,6 +161,8 @@ async function iniciar() {
     buscarTermo('Realidade');
     buscarTermo('Universo');
     buscarTermo('Viagem');
+    buscarTermo('tem');
+    buscarTermo('filme');
 }
   
 iniciar(); 
