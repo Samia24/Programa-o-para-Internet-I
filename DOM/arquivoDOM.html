@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Aprendendo DOM.</title>
+        <!--Defer serve para que essa linha de código seja executada somente após ler toda a árvore-->
+        <script src= "scripts.js" defer></script>
+    </head>
+    <body>
+        <h1 id= "principal">Aprendendo DOM</h1>
+        <div id= "resultado1"></div>
+        
+        <h2>Percorrendo filhos</h2>
+        <div id="pai">
+            <p id= "filho1">Parágrafo filho 1</p>
+            <p id= "filho2">Parágrafo filho 2</p>
+        </div>
+        <div id= "resultadoFilhos"></div>
+
+        <h2>Clicando em um botão</h2>
+        <button id= "botao1">Clique aqui</button>
+        
+        <h2>Trabalhando com caixas de texto</h2>
+        <label for = "numero1">Número 1:</label>
+        <input id ="numero1">
+        <label for = "numero2">Número 2:</label>
+        <input id ="numero2">
+        <br>
+        <button id= "botaoSomar">Somar</button>
+        <div id= "resultadoSoma"></div>
+
+        <h2>Lendo um chekbox</h2>
+        <label>
+            <input type="checkbox" value = "Sim" id = "interesse">
+            Quero receber novidades
+        </label>
+        <button id = "botaoInteresse">Verificar</button>
+        <div id = "resultadoInteresse"></div>
+
+        <h2>Lendo a opção de um select</h2>
+        <select id = "cidades">
+            <option value = "Teresina">Teresina</option>
+            <option value = "Fortaleza">Fortaleza</option>
+            <option value = "São Luís">São Luís</option>
+        </select>
+        <div id = "resultadoCidade"></div>
+
+        <h2>Mudando a cor da página</h2>
+        <input type="color" id = "inputCor">
+
+        
+        <br><br><br><br><br><br><br><br><br>
+    </body>
+</html>

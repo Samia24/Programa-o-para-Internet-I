@@ -1,0 +1,27 @@
+=== Questão 5. Qual a diferença entre as propriedades textContent, innerText e innerHTML dos
+elementos HTML? Cite exemplos.
+R. innerText -> Retorna o texto visível, sem formatações ou elementos HTML. E também não inclui texto 
+oculto com estilos CSS.
+
+innerHtml -> Retorna o texto, com formatações e com elementos HTML.
+
+textContent -> Retorna o texto com formatações, incluindo espaçamentos e texto oculto por CSS,
+mas sem os elementos HTML.
+
+Ex:
+<div id="myDiv">
+  Olá, mundo! <span style="display: none;"> Texto oculto</span>
+</div>
+const div = document.getElementById('myDiv');
+
+// textContent
+console.log("textContent: " + div.textContent);
+Saída: "textContent: Olá, mundo! Texto oculto"
+
+// innerText
+console.log("innerText: " + div.innerText);
+Saída: "innerText: Olá, mundo!"
+
+// innerHTML
+console.log("innerHTML: " + div.innerHTML);
+Saída: "innerHTML: Olá, mundo! <span style="display: none;"> Texto oculto</span>"

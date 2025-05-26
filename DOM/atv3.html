@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Atv 3</title>
+        <!--Defer serve para que essa linha de código seja executada somente após ler toda a árvore-->
+        <script src= "scriptAtv3.js" defer></script>
+    </head>
+    <body id="corpoTexto" style="background-color: white; color: black;">
+        <h1 id= "titulo1" style="background-color: pink; text-align: center;"></h1>
+        <h2 id= "subtitulo1"></h2>
+        <h3 id="conteudos"></h3>
+        <div>
+            <li id="cont1"></li>
+            <li id="cont2"></li>
+            <li id="cont3"></li>
+            <li id="cont4"></li>
+        </div>
+        <div>
+            <h2 id="checkAtv"></h2>
+            <label><input type="checkbox" value = "atividade"> Atv 1 - Portfólio </label><br>
+            <label><input type="checkbox" value = "atividade"> Atv 2 - Ajustar Pág BlogADS </label><br>
+            <label><input type="checkbox" value = "atividade"> Atv 3 - Criar um buscador </label><br>
+            <label><input type="checkbox" value = "atividade"> Atv 4 - Exercício sobre D.O.M. </label><br><br>
+            <button onclick="calcular_qtd_atv()" style="background-color: palevioletred; border-radius: 1rem;">Calcular</button>
+            <div id="resultadoQtdAtv" style="margin-top: 1rem; font-weight: bold;"></div>
+        </div>
+        <h2 id="discentes"></h2>
+        <div>
+            <p id="alterarParagrafo">- Sâmia Dantas</p>
+            <p>- Ana Cláudia</p>
+            <p>- Amanda Victória</p>
+            <button id="botaoAlterar" style="background-color: palevioletred; border-radius: 1rem;">Alterar Nome da Sâmia</button>
+            <button onclick="limparParagrafo()" style="background-color: palevioletred; border-radius: 1rem;">Limpar Nome - Sâmia</button>
+            <button onclick="calcular_qtd_paragrafos()" style="background-color: palevioletred; border-radius: 1rem;">Calcular Qtd Parágrafos</button>
+        </div>
+        <div id="resultadoTagP" style="margin-top: 1rem; font-weight: bold;"></div>
+        <h2 id="caixaAlta"></h2>
+        <label for="caixa1">Texto original:</label><br>
+        <input type="text" id="caixa1" placeholder="Digite algo aqui"><br><br>
+
+        <label for="caixa2">Texto copiado (CAIXA ALTA):</label><br>
+        <input type="text" id="caixa2" readonly><br><br>
+        <button onclick="copiarParaCaixaAlta()" style="background-color: palevioletred; border-radius: 1rem;">Copiar em maiúsculas</button>
+
+        <h2 id="altoContraste"></h2>
+        <button onclick="ativarContraste()" style="background-color: palevioletred; border-radius: 1rem;">Ativar/Desativar Contraste</button>
+        <button onclick="resetarCores()" style="background-color: palevioletred; border-radius: 1rem;">Resetar Cores</button>
+        
+        <h2 id="alterarTamFonte"></h2>
+        <button onclick="aumentarFonte()" style="background-color: palevioletred; border-radius: 1rem;">Aumentar Texto</button>
+        <button onclick="diminuirFonte()" style="background-color: palevioletred; border-radius: 1rem;">Diminuir Texto</button>  
+        
+        <h2 id="calculadora"></h2>
+        <label>Valor 1:</label>
+        <input type="number" id="valor1"><br><br>
+
+        <label>Valor 2:</label>
+        <input type="number" id="valor2"><br><br>
+
+        <div class="operacoes">
+            <label><input type="radio" name="operacao" value="soma" checked> Soma (+)</label><br>
+            <label><input type="radio" name="operacao" value="subtracao"> Subtração (-)</label><br>
+            <label><input type="radio" name="operacao" value="multiplicacao"> Multiplicação (x)</label><br>
+            <label><input type="radio" name="operacao" value="divisao"> Divisão (÷)</label><br><br>
+        </div>
+
+        <button onclick="calcular()" style="background-color: palevioletred; border-radius: 1rem;">Calcular</button>
+        <div id="resultado"></div>
+
+        <h2 id="addItem"></h2> 
+        <input type="text" id="entradaTexto" placeholder="Digite um item"> 
+        <button onclick="adicionarNaLista()" style="background-color: palevioletred; border-radius: 1rem;">Adicionar</button>
+        <ul id="listaItens">
+            <!-- Os itens serão inseridos aqui -->
+        </ul>
+
+        <h2 id="selected"></h2> 
+        <input type="text" id="entradaTextoSelect" placeholder="Digite algo para o select"><br><br>
+        <button onclick="adicionarNoSelect()" style="background-color: palevioletred; border-radius: 1rem;">Adicionar no Select</button>
+
+        <select id="listaSelect">
+            <option disabled selected>Selecione um item</option>
+        </select>
+
+
+       
+    </body>
+</html>
