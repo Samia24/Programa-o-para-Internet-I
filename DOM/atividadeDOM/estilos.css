@@ -198,7 +198,7 @@ input[type="checkbox"] {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.controles-q7 {
+.controlesQ7 {
     display: flex;
     gap: 10px;
     margin: 10px 0 15px 0;
@@ -232,7 +232,7 @@ input[type="checkbox"] {
     gap: 10px;
 }
 
-.container-q10 {
+.containerQ10 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,7 +240,7 @@ input[type="checkbox"] {
     margin-top: 15px;
 }
 
-.container-q10 select {
+.containerQ10 select {
     width: 250px;
     background-color: #ffdbf1;
     border: 2px solid #e5dee6;
@@ -249,18 +249,18 @@ input[type="checkbox"] {
     padding: 5px;
 }
 
-.container-q10 select option {
+.containerQ10 select option {
     padding: 5px;
     font-weight: bold;
 }
 
-.buttons-q10 {
+.botoesQ10 {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.buttons-q10 button {
+.botoesQ10 button {
     width: 50px;
     height: 40px;
     font-size: 20px;
@@ -272,4 +272,23 @@ button:disabled {
     color: #cccccc;            /* Texto em cinza claro */
     border-color: #777777;      /* Borda cinza */
     cursor: not-allowed;        /* O cursor vira um 'círculo de proibido' */
+}
+
+/* Media Query para telas pequenas (como celulares) */
+@media (max-width: 600px) {
+    /* Faz o container principal empilhar os itens verticalmente */
+    .containerQ10 {
+        flex-direction: column;
+    }
+
+    /* Ajusta a largura das caixas de seleção para ocupar a tela */
+    .containerQ10 select {
+        width: 80vw; /* Ocupa 80% da largura da tela */
+    }
+
+    /* Coloca os botões de mover lado a lado na vertical */
+    .botoesQ10 {
+        flex-direction: row;
+        margin: 15px 0;
+    }
 }
