@@ -1,0 +1,275 @@
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 5px;
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+#videoFundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Mantém o vídeo no fundo */
+}
+
+
+h1 {
+    text-align: center;
+    background-color: rgb(251, 3, 218);
+    color: white;
+    padding: 15px 0;
+    margin: 0;
+    width: 100%;
+    display: block;
+}
+
+#title2{
+    text-align: center;
+    background-color: rgb(247, 54, 19);
+    color: white;
+    padding: 15px 0;
+    margin: 0;
+    width: 100%;
+    display: block;
+}
+
+button{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+    background-color: rgb(251, 3, 218);
+    border-radius: 1rem;
+    border-color: #e5dee6;
+    font-family: cursive;
+    color: rgb(252, 249, 251);
+}
+
+
+#botoesIMC{
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+#botoesQ2{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+#botoesInteracoes{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+#botoesImagem{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+#botoesContainer{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+
+#nome{
+    font-family: cursive;
+    margin: 0;
+    padding: 5px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(236, 229, 234);
+}
+
+input{
+    border-radius: 1rem;
+    background-color: #ffdbf1;
+}
+
+.oculto {
+    display: none;
+}
+
+.mensagem-erro {
+    background-color: red;
+    color: rgb(255, 253, 255);
+    margin-top: 10px;
+}
+
+#resultadoUpload {
+    margin-top: 15px;
+    border: 2px dashed #e845aa;
+    border-radius: 5px;
+    min-height: 150px;
+    width: 80%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#resultadoUpload img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 5px;
+}
+
+/* Definindo o tamanho padrão do "contêiner" da imagem */
+#resultadoSelect {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* DEFININDO O TAMANHO PADRÃO DA 'CAIXA' */
+    width: 400px;
+    height: 300px; 
+    
+    border: 3px solid #ffdbf1;
+    border-radius: 10px;
+    background-color: #f8a9f4; 
+    padding: 0; /* Remove padding para a imagem preencher tudo */
+    overflow: hidden; /* Garante que nada vaze dos cantos arredondados */
+}
+
+#imagemExibida {
+    /* Faz a imagem ocupar todo o espaço do contêiner #resultadoSelect */
+    width: 100%;
+    height: 100%;
+
+    /* Como a imagem deve se comportar */
+    object-fit: cover; 
+
+    /* Removendo bordas da imagem pois o contêiner já tem */
+    border-radius: 0; 
+    border: none;
+    box-shadow: none;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    gap: 10px;
+    margin: 15px 0;
+    padding: 15px;
+    background-color: rgba(162, 8, 124, 0.904);
+    border-radius: 8px;
+}
+
+.checkbox-container div {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+#redesSelecionadas {
+    margin-top: 15px;
+    padding: 10px;
+    border: 2px solid #ffdbf1;
+    min-height: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.controles-q7 {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 15px 0;
+}
+
+#inputHashtag {
+    flex-grow: 1; /* Faz o input ocupar o espaço disponível */
+    padding: 8px;
+}
+
+#listaHashtags {
+    width: 80%;
+    max-width: 300px;
+    background-color: #ffdbf1;
+    border: 2px solid #e5dee6;
+    border-radius: 5px;
+    color: #333;
+    padding: 5px;
+}
+
+/* Estiliza cada item dentro da lista */
+#listaHashtags option {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.botoesGerenciarQ7 {
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+}
+
+.container-q10 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.container-q10 select {
+    width: 250px;
+    background-color: #ffdbf1;
+    border: 2px solid #e5dee6;
+    border-radius: 5px;
+    color: #333;
+    padding: 5px;
+}
+
+.container-q10 select option {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.buttons-q10 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttons-q10 button {
+    width: 50px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: #69616182;  /* Um tom de cinza escuro */
+    color: #cccccc;            /* Texto em cinza claro */
+    border-color: #777777;      /* Borda cinza */
+    cursor: not-allowed;        /* O cursor vira um 'círculo de proibido' */
+}

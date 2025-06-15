@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "scripts.js" defer></script>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!-- VÍDEO DE FUNDO -->
+    <video autoplay muted loop id="videoFundo">
+        <source src="images/meu-fundo.mp4" type="video/mp4">
+    </video>
+
+
+    <h1>Atividade D.O.M 2</h1>
+    <p id="nome">Discente: Sâmia Dantas Braga</p>
+    <p id="nome">Disciplina: Programação para Internet I</p>
+    <p id="nome">Professor: Ely Miranda</p>
+    <h2 id="title2">Resolução das Questões</h2>
+    <!-- Questão 1 -->
+    <button id="questao1" class="botoesQuestoes">Questão 1</button>
+    <div id="calcularIMC" class="oculto">
+        <h2>=== Calcular IMC ===</h2>
+        <input id = "dadosPeso" placeholder="Informe seu peso" type="number">
+        <input id = "dadosAltura" placeholder="Informe sua altura" type="number">
+        <div id="botoesIMC">
+            <button id="botaoIMC">Calcular IMC</button>
+            <button id="limparIMC">Limpar</button>
+        </div>
+        <p id="resultado">Resultado </p>
+        <div id="mensagemErro" class="mensagem-erro oculto">Os campos devem ser preenchidos</div>
+    </div>
+    <!-- Questão 2 -->
+    <button id="questao2" class="botoesQuestoes">Questão 2</button>
+    <div id="mostrarTexto" class="oculto">
+        <h2>=== Exibir Texto ===</h2>
+        <label for="caixaDeTexto">Digite o texto:</label>
+        <input type="text" id="caixaDeTexto">
+        <div id="botoesQ2">
+            <button id="botaoExibir">Exibir</button>
+            <button id="limparTexto">Limpar</button>
+        </div>
+        <div id="conteudo"></div>
+        <div id="mensagemErroQ2" class="mensagem-erro oculto">Os campos devem ser preenchidos</div>
+    </div>
+    <!-- Questão 3 -->
+    <button id="questao3" class="botoesQuestoes">Questão 3</button>
+    <div id="calcularInteracoes" class="oculto">
+        <h2>=== Calcular Interacoes ===</h2>
+        <input id = "numInteracoes" placeholder="Informe o total de interacoes" type="number">
+        <input id = "numVisualizacoes" placeholder="Informe o total de visualizacoes" type="number">
+        <div id="botoesInteracoes">
+            <button id="botaoInteracoes">Calcular Taxa de Engajamento</button>
+            <button id="limparInteracoes">Limpar</button>
+        </div>
+        <p id="taxa"></p>
+        <div id="mensagemErroQ3" class="mensagem-erro oculto">Os campos devem ser preenchidos</div>
+    </div>
+    <!-- Questão 4 -->
+    <button id="questao4" class="botoesQuestoes">Questão 4</button>
+    <div id="uploadDeImagem" class="oculto">
+        <h2>=== Upload de Imagem ===</h2>
+        <input type="file" id="uploadImagem" accept="image/*">
+        <div id="botoesImagem">
+            <button id="botaoCarregar">Carregar Imagem</button>
+            <button id="limparImagem">Limpar</button>
+        </div>
+        <div id="resultadoUpload"></div>
+        <div id="mensagemErroQ4" class="mensagem-erro oculto">Por favor, selecione uma imagem.</div>
+    </div>
+    <!-- Questão 5 -->
+    <button id="questao5" class="botoesQuestoes">Questão 5</button>
+    <div id="selectDeImagem" class="oculto">
+        <h2>=== Selecionar Imagem ===</h2>
+        <label for="imageSelector">Escolha uma categoria de imagem:</label>
+        <select id="imageSelector">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="images/volei.jpg">Vôlei com Forró 🏐</option>
+            <option value="images/bob.jpg">Meu filho Bob 🐶</option>
+            <option value="images/noiva.jpg">Noiva Caipira 🎊</option>
+        </select>
+        
+        <div id="botoesContainer">
+            <button id="botaoCarregarImagemQ5">Carregar Imagem</button>
+            <button id="limparQuadroQ5">Limpar</button>
+        </div>
+        
+        <div id="resultadoSelect">
+            <img id="imagemExibida" src="" alt="A imagem selecionada aparecerá aqui." class="oculto">
+        </div>
+        
+        <div id="mensagemErroQ5" class="mensagem-erro oculto">Por favor, selecione uma imagem.</div>
+    </div>
+    <!-- Questão 6 -->
+    <button id="questao6" class="botoesQuestoes">Questão 6</button>
+    <div id="selecaoDeRedes" class="oculto">
+        <h2>=== Selecionar Redes Sociais ===</h2>
+        <div class="checkbox-container">
+            <div>
+                <input type="checkbox" id="facebook" name="redesSociais" value="Facebook">
+                <label for="facebook">Facebook</label>
+            </div>
+            <div>
+                <input type="checkbox" id="twitter" name="redesSociais" value="Twitter">
+                <label for="twitter">Twitter</label>
+            </div>
+            <div>
+                <input type="checkbox" id="instagram" name="redesSociais" value="Instagram">
+                <label for="instagram">Instagram</label>
+            </div>
+            <div>
+                <input type="checkbox" id="linkedin" name="redesSociais" value="LinkedIn">
+                <label for="linkedin">LinkedIn</label>
+            </div>
+            <div>
+                <input type="checkbox" id="tiktok" name="redesSociais" value="TikTok">
+                <label for="tiktok">TikTok</label>
+            </div>
+        </div>
+        
+        <div id="redesSelecionadas"></div>
+        
+        <div id="botoesContainer">
+            <button type="button" id="enviarBtn">Enviar Seleção</button>
+            <button type="button" id="limparSelecaoRedes">Limpar</button>
+        </div>
+        <div id="mensagemErroQ6" class="mensagem-erro oculto">Selecione pelo menos uma rede social.</div>
+    </div>
+    <!-- Questão 7 -->
+    <button id="questao7" class="botoesQuestoes">Questão 7</button>
+    <div id="adicionarHashtag" class="oculto">
+        <h2>=== Adicionar Hashtags Populares ===</h2>
+        <label for="inputHashtag">Digite uma hashtag (sem o #):</label>
+        
+        <div class="controles-q7">
+            <input type="text" id="inputHashtag" placeholder="Ex: tbt, love, festajunina">
+            <button id="botaoAdicionarHashtag">Adicionar</button>
+        </div>
+
+        <h3>Hashtags Adicionadas:</h3>
+        <select id="listaHashtags" size="5"></select>
+
+        <div id="mensagemErroQ7" class="mensagem-erro oculto"></div>
+
+        <div class="botoesGerenciarQ7">
+            <button id="botaoRemoverHashtag">Remover Selecionada</button>
+            <button id="limparHashtags" class="botao-limpar-q7">Limpar Lista</button>
+        </div>
+    </div>
+    <!-- Questão 10 -->
+    <button id="questao10" class="botoesQuestoes">Questão 10</button>
+    <div id="moverAtivos" class="oculto">
+        <h2>============= Mover Ativos Financeiros entre Carteiras =====</h2>
+        <div class="container-q10">
+            <div>
+                <label for="ativosDisponiveis">Ativos Disponíveis:</label>
+                <select id="ativosDisponiveis" size="10" multiple>
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="GOOGL">Google (GOOGL)</option>
+                    <option value="AMZN">Amazon (AMZN)</option>
+                    <option value="MSFT">Microsoft (MSFT)</option>
+                    <option value="TSLA">Tesla (TSLA)</option>
+                    <option value="BRK.B">Berkshire Hathaway (BRK.B)</option>
+                    <option value="META">Meta (META)</option>
+                    <option value="V">Visa (V)</option>
+                    <option value="JNJ">Johnson & Johnson (JNJ)</option>
+                    <option value="WMT">Walmart (WMT)</option>
+                </select>
+            </div>
+            <div class="buttons-q10">
+                <button id="moverParaDireitaBtn">&gt;</button>
+                <button id="moverParaEsquerdaBtn">&lt;</button>
+            </div>
+            <div>
+                <label for="carteiraInvestimentos">Carteira de Investimentos:</label>
+                <select id="carteiraInvestimentos" size="10" multiple></select>
+            </div>
+        </div>
+        <div id="mensagemErroQ10" class="mensagem-erro oculto"></div>   
+    </div>
+    
+</body>
+</html>
