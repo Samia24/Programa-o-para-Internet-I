@@ -178,6 +178,34 @@ async function enviarPost() {
   }
 }
 
+// FUNÇÕES DE LIMPAR CONTEÚDO DAS APIS
+
+function limparDog() {
+  getById('nomeRacaCachorro').value = "";
+  getById('cachorro').src = "";
+  getById('cachorro').alt = "";
+  getById('textoAlt2').innerText = "";
+  getById('mostrarErro').innerText = "";
+}
+
+function limparCoquetel() {
+  getById('nomeCoquetel').value = "";
+  getById('instrucoes').innerText = "";
+  getById('erro3').innerText = "";
+}
+
+function limparMusicas() {
+  getById('nomeMusica').value = "";
+  getById('resultadoMusicas').innerHTML = "";
+  getById('erroMusica').innerText = "";
+}
+
+function limparPost() {
+  getById('tituloPost').value = "";
+  getById('corpoPost').value = "";
+  getById('respostaPost').innerText = "";
+}
+
 /* Execução via terminal - cURL
 Método POST: curl -X POST https://jsonplaceholder.typicode.com/posts -H "Content-Type: application/json" -d "{\"title\": \"Meu título teste\", \"body\": \"Este é o corpo do post\", \"userId\": 1}"
 Métodos GET:
